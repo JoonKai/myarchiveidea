@@ -54,6 +54,7 @@ class _MainScreenState extends State<MainScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //새 아이디어 작성 화면으로 이동
+          Navigator.pushNamed(context, '/edit');
         },
         backgroundColor: const Color(0xff7f42fd).withOpacity(0.7),
         child: Image.asset(
@@ -145,19 +146,5 @@ class _MainScreenState extends State<MainScreen> {
     // 리스트 객체 역순으로 정렬
     lstIdeaInfo.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     setState(() {}); //리스트 갱신
-  }
-
-  Future setInsertIdeaInfo() async {
-    await dbHelper.initDatabase();
-    await dbHelper.insertIdeaInfo(
-      IdeaInfo(
-        title: '#환경 보존 문제 해결 앱 아이디어',
-        motive: '길가다가 쓰레기 주우면서 알게됨',
-        content: '자세한 내용입니다....',
-        priority: 5,
-        feedback: '피드백 사항입니다.',
-        createdAt: DateTime.now().millisecondsSinceEpoch,
-      ),
-    );
   }
 }
